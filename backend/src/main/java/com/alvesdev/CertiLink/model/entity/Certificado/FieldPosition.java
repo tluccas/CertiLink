@@ -1,4 +1,4 @@
-package com.alvesdev.CertiLink.model.entity;
+package com.alvesdev.CertiLink.model.entity.Certificado;
 
 import jakarta.persistence.*;
 import lombok.*;

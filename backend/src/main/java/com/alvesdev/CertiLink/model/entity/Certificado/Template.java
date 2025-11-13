@@ -1,9 +1,11 @@
-package com.alvesdev.CertiLink.model.entity;
+package com.alvesdev.CertiLink.model.entity.Certificado;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.alvesdev.CertiLink.model.entity.Users.User;
 
 @Entity
 @Table(name = "template")
