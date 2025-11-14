@@ -19,6 +19,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -36,17 +39,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            
-            .authorizeHttpRequests(
-                auth -> auth.requestMatchers("/auth").permitAll()
-                .requestMatchers("/users/create-user").permitAll()
-                .anyRequest().authenticated())
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/auth").permitAll()
+                                .requestMatchers("/users/create-user").permitAll()
+                                .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(
-                    conf -> conf.jwt(Customizer.withDefaults())
+                        conf -> conf.jwt(Customizer.withDefaults())
                 );
 
         return http.build();
@@ -73,4 +77,17 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
+    @Bean
+public CorsFilter corsFilter() {
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true); 
+    config.addAllowedOrigin("http://localhost:5173"); 
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
+}
 }
