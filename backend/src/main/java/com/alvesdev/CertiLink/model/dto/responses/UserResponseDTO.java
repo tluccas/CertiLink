@@ -1,4 +1,4 @@
-package com.alvesdev.CertiLink.model.dto;
+package com.alvesdev.CertiLink.model.dto.responses;
 
 import com.alvesdev.CertiLink.model.entity.Users.User;
 
