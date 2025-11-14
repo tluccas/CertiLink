@@ -1,37 +1,55 @@
 package com.alvesdev.CertiLink.config.security;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import com.alvesdev.CertiLink.model.entity.Users.User;
-import java.util.List;
 
 public class UserAuthenticated implements UserDetails {
 
-    private final User user;
+    private Long id;
+    private String username;
+    private String password;
+    private String email;
+    private Collection<? extends GrantedAuthority> authorities;
 
     public UserAuthenticated(User user) {
-        this.user = user;
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.authorities = List.of(
+            new SimpleGrantedAuthority("ROLE_" + user.getRole().getName())
+        );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() { 
+        return email; 
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of((
-            new SimpleGrantedAuthority("ROLE_" + user.getRole().getName())
-        ));
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-       return user.getPassword();
+       return password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -51,5 +69,4 @@ public class UserAuthenticated implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
 }
