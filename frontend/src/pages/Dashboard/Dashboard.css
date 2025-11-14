@@ -1,0 +1,38 @@
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px;
+  background-color: #1f1f2f;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  color: #81a1c1;
+}
+
+.dashboard-container p {
+  font-size: 1rem;
+  margin-bottom: 24px;
+  word-break: break-all;
+}
+
+.dashboard-container button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: #5e81ac;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dashboard-container button:hover {
+  background-color: #4c6e99;
+}
