@@ -1,0 +1,14 @@
+.bg-light{
+    background: #001630;
+    background: linear-gradient(90deg, rgba(0, 22, 48, 1) 0%, rgba(1, 15, 26, 1) 46%, rgba(0, 0, 0, 1) 100%);
+}
+
+.profile-card {
+    max-width: 340px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
