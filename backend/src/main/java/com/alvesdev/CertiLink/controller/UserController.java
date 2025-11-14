@@ -34,7 +34,7 @@ public class UserController {
     }
 
     // Hashear a senha e lidar com JWT agora
-    @PostMapping("/create-user")
+    @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> createUser(@RequestBody CreateUserRequest entity) {
        
         User user = new User();

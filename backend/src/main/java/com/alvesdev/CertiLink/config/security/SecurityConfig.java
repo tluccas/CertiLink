@@ -46,7 +46,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers("/auth").permitAll()
-                                .requestMatchers("/users/create-user").permitAll()
+                                .requestMatchers("/users/register").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(
