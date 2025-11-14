@@ -1,7 +1,7 @@
 package com.alvesdev.CertiLink.controller;
 
 import com.alvesdev.CertiLink.model.entity.Users.User;
-import com.alvesdev.CertiLink.model.dto.UserResponseDTO;
+import com.alvesdev.CertiLink.model.dto.responses.UserResponseDTO;
 import com.alvesdev.CertiLink.model.dto.requests.*;
 
 import java.util.List;
