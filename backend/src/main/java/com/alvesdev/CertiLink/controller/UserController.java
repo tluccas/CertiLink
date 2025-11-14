@@ -7,6 +7,7 @@ import com.alvesdev.CertiLink.model.dto.requests.*;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.alvesdev.CertiLink.repository.UserRepository;
@@ -45,6 +46,15 @@ public class UserController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new UserResponseDTO(user));
+    }
+    
+    @GetMapping("/me")
+    public ResponseEntity<UserResponseDTO> me(Authentication authentication){
+        String principal = authentication.getName();
+        return userRepository.findByUsername(principal)
+            .or(() -> userRepository.findByEmail(principal))
+            .map(user -> ResponseEntity.ok(new UserResponseDTO(user)))
+            .orElse(ResponseEntity.notFound().build());
     }
     
     
