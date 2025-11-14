@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.alvesdev.CertiLink.service.security.AuthenticationService;
-import com.alvesdev.CertiLink.model.dto.TokenResponseDTO;
+import com.alvesdev.CertiLink.model.dto.responses.TokenResponseDTO;
 import com.alvesdev.CertiLink.model.dto.requests.LoginRequest;
 
 @RestController
