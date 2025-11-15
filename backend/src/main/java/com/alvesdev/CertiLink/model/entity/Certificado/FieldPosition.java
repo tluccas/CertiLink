@@ -20,11 +20,11 @@ public class FieldPosition {
     @Column(nullable = false, length = 50)
     private String fieldName; // Ex: "nomeAluno"
 
-    @Column(nullable = false)
-    private Double xCoordinate;
+    @Column(nullable = false, name = "x_coordinate")
+    private Double xCoordinate; // Percentual em relação à largura da página
 
-    @Column(nullable = false)
-    private Double yCoordinate;
+    @Column(nullable = false, name = "y_coordinate")
+    private Double yCoordinate; // Percentual em relação à altura da página
 
     @Column(nullable = false)
     private Integer fontSize = 16;
