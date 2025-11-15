@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext.jsx";
-import { apiClient } from "../../api/ApiClient.jsx";
+import { ApiClient } from "../../api/ApiClient.jsx";
 import "./Me.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -10,7 +10,7 @@ export default function Profile() {
 
     useEffect(() => {
         if (!token) return;
-        apiClient(token)("/users/me")
+        ApiClient(token)("/users/me")
             .then(r => {
                 if (r.status === 401) { logout(); throw new Error("Expirado"); }
                 return r.json();

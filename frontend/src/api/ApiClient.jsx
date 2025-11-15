@@ -1,4 +1,4 @@
-export function apiClient(token) {
+export function ApiClient(token) {
   return (url, options = {}) =>
     fetch("http://localhost:8080" + url, {
       ...options,

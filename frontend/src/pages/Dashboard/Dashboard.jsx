@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext.jsx";
-import { apiClient } from "../../api/ApiClient.jsx";
+import { ApiClient } from "../../api/ApiClient.jsx";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -15,7 +15,7 @@ export default function Dashboard() {
       return;
     }
 
-    apiClient(token)("/templates/all")
+    ApiClient(token)("/templates/all")
       .then((r) => {
         if (!r.ok) throw new Error("Falha ao carregar templates");
         return r.json();
